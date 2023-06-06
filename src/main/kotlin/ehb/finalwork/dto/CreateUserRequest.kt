@@ -1,6 +1,6 @@
 package ehb.finalwork.dto
 
-data class UserDto(
+data class CreateUserRequest(
     var id: Long = -1,
     var firstname: String,
     var lastname: String,
