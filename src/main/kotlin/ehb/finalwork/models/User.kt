@@ -1,9 +1,7 @@
 package ehb.finalwork.models
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import com.fasterxml.jackson.annotation.JsonIgnore
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "users")
@@ -16,6 +14,14 @@ data class User(
     var email: String,
     var password: String,
     var accessToken: String = "",
-    var expirationDate: Long = System.currentTimeMillis()
+    var expirationDate: Long = System.currentTimeMillis(),
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+    name = "user_favorite_sneaker",
+    joinColumns = [JoinColumn(name = "user_id")],
+    inverseJoinColumns = [JoinColumn(name = "sneaker_id")]
+)
+    @JsonIgnore
+    var favorites: MutableList<Sneaker> = mutableListOf()
 
 )

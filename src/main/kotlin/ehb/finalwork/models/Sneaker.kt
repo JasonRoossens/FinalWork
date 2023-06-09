@@ -1,9 +1,6 @@
 package ehb.finalwork.models
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import java.time.LocalDate
 
 
@@ -19,6 +16,9 @@ data class Sneaker(
     var colorway: String,
     var releasedate: LocalDate,
     var price: Double,
-    var images: List<String>
+    @ElementCollection
+    var images: List<String>,
+    @ManyToMany(mappedBy = "favorites")
+    val users: MutableList<User> = mutableListOf()
 
 )

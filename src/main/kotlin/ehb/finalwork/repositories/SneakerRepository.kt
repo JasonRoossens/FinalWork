@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface SneakerRepository : JpaRepository<Sneaker, Long> {
     fun findAllByBrand(brand: String): List<Sneaker> // brand
+
 }
