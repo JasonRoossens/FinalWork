@@ -61,7 +61,7 @@ class UserService {
     // Get user by id
     fun getUserById(id: Long): User {
         println("user found!")
-        return userRepository.findById(id).orElseThrow()
+        return userRepository.findById(id).orElseThrow { NoSuchElementException("user with $id not found") }
     }
 
     // Get user by name (firstname, lastname)

@@ -31,7 +31,7 @@ class SneakerService {
     // Get sneaker by id
     fun getSneakerById(id: Long): Sneaker {
         println("sneaker found!")
-        return sneakerRepository.findById(id).orElseThrow()
+        return sneakerRepository.findById(id).orElseThrow { NoSuchElementException("Sneaker with $id not found") }
     }
 
     // Get sneaker by brand
