@@ -8,7 +8,7 @@ import java.time.LocalDate
 @Table(name = "sneakers")
 data class Sneaker(
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = -1,
     var stylecode: String,
     var brand: String,
@@ -20,5 +20,4 @@ data class Sneaker(
     var images: List<String>,
     @ManyToMany(mappedBy = "favorites")
     val users: MutableList<User> = mutableListOf()
-
 )

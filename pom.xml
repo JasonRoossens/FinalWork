@@ -5,17 +5,17 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.0</version>
+        <version>3.0.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>ehb</groupId>
-    <artifactId>FinalWork</artifactId>
+    <groupId>ehb.be</groupId>
+    <artifactId>campus_manager</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>FinalWork</name>
-    <description>FinalWork</description>
+    <name>campus_manager</name>
+    <description>campus_manager</description>
     <properties>
         <java.version>17</java.version>
-        <kotlin.version>1.8.21</kotlin.version>
+        <kotlin.version>1.7.22</kotlin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -36,9 +36,13 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib</artifactId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version>
+        </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

@@ -7,7 +7,7 @@ import jakarta.persistence.*
 @Table(name = "users")
 data class User(
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = -1,
     var firstname: String,
     var lastname: String,
@@ -17,11 +17,10 @@ data class User(
     var expirationDate: Long = System.currentTimeMillis(),
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-    name = "user_favorite_sneaker",
-    joinColumns = [JoinColumn(name = "user_id")],
-    inverseJoinColumns = [JoinColumn(name = "sneaker_id")]
-)
+        name = "user_favorite_sneaker",
+        joinColumns = [JoinColumn(name = "user_id")],
+        inverseJoinColumns = [JoinColumn(name = "sneaker_id")]
+    )
     @JsonIgnore
     var favorites: MutableList<Sneaker> = mutableListOf()
-
 )
