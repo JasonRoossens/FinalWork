@@ -6,15 +6,21 @@ import com.sendgrid.helpers.mail.objects.Email
 import com.sendgrid.Method
 import com.sendgrid.Request
 import com.sendgrid.SendGrid
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.io.IOException
+import org.springframework.core.env.Environment
 
 
 
 @Service
 class SendGridEmailService : EmailService {
+
+    @Autowired
+    private lateinit var environment: Environment
+
     override fun sendEmail(to: String, subject: String, body: String) {
-        val sendGridApiKey = "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" // Replace with your actual SendGrid API key
+        val sendGridApiKey = environment.getProperty("sendgrid.api.key") // Replace with your actual SendGrid API key
         val fromEmail = "notsneakpeek@hotmail.com" // Replace with your desired "from" email address
 
         val sendGrid = SendGrid(sendGridApiKey)
