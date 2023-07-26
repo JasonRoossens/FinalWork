@@ -4,6 +4,7 @@ import ehb.finalwork.dto.CreateUserRequest
 import ehb.finalwork.dto.LoginUserRequest
 import ehb.finalwork.dto.LoginUserResponse
 import ehb.finalwork.models.User
+import ehb.finalwork.services.SendGridEmailService
 import ehb.finalwork.services.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -11,15 +12,19 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("users")
 @CrossOrigin
-class UserController {
-
-    @Autowired
-    lateinit var userService: UserService;
-
+class UserController(
+    private val userService: UserService,
+    private val emailService: SendGridEmailService
+) {
     // Create user
     @PostMapping
     fun createUser(@RequestBody userRequest: CreateUserRequest): User {
-        return userService.createUser(userRequest)
+        val newUser = userService.createUser(userRequest)
+
+        // Send a welcome email to the new user
+        emailService.sendWelcomeEmail(newUser.email, "${newUser.firstname} ${newUser.lastname}")
+
+        return newUser
     }
 
     @RequestMapping("/login")
