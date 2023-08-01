@@ -1,5 +1,6 @@
 package ehb.finalwork.controllers
 
+import ehb.finalwork.WebScraper
 import ehb.finalwork.dto.CreateSneakerRequest
 import ehb.finalwork.models.Sneaker
 import ehb.finalwork.services.SneakerService
@@ -9,17 +10,13 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("sneakers")
 @CrossOrigin
-class SneakerController {
-
-    @Autowired
-    lateinit var sneakerService: SneakerService;
+class SneakerController(private val sneakerService: SneakerService, private val webScraper: WebScraper) {
 
     // Create sneaker
     @PostMapping
     fun createSneaker(@RequestBody sneakerRequest: CreateSneakerRequest): Sneaker {
         return sneakerService.createSneaker(sneakerRequest)
     }
-
 
     // Get sneaker by id
     @GetMapping("sneaker/{id}")
@@ -33,11 +30,16 @@ class SneakerController {
         return sneakerService.getSneakersByBrand(name)
     }
 
-    // Get all users
+    // Get all sneakers
     @GetMapping
     fun getAllSneakers(): MutableList<Sneaker> {
-
         return sneakerService.getAllSneakers();
+    }
+
+    @GetMapping("/scrapedData")
+    fun getScrapedData(): List<String> {
+        val url = "https://www.sneakerjagers.com/releases"
+        return webScraper.scrapeWebsite(url)
     }
 
     // Update sneakers by id

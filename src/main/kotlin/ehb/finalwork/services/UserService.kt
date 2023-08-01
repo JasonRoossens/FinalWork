@@ -5,8 +5,12 @@ import ehb.finalwork.dto.CreateUserRequest
 import ehb.finalwork.dto.LoginUserResponse
 import ehb.finalwork.models.User
 import ehb.finalwork.repositories.UserRepository
+import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
+import kotlin.NoSuchElementException
 
 @Service
 class UserService {
@@ -31,31 +35,30 @@ class UserService {
     fun loginUser(user: LoginUserRequest): LoginUserResponse? {
         val u = userRepository.findByEmail(user.email)
         if (u != null) {
-            if(user.password ==  u.password){
-                println("Succesfull login")
-                u.accessToken = java.util.UUID.randomUUID().toString()
+            if (user.password == u.password) {
+                println("Successful login")
+                val accessToken = generateJwtToken(u.id)
+                u.accessToken = accessToken
                 u.expirationDate = System.currentTimeMillis() + (1000 * 60 * 60 * 24 * 1)
                 userRepository.save(u)
-                return LoginUserResponse(u.accessToken)
+                return LoginUserResponse(accessToken, u.firstname, u.lastname, u.email, u.password, u.id) //
             } else {
                 println("Wrong password or email")
                 return null
             }
         } else {
-            println("Wrong Wrong password or email")
+            println("Wrong password or email")
             return null
         }
     }
 
-    fun isAuthenticated(token: String): Boolean {
-        val u = userRepository.findByAccessToken(token)
-        if(u != null) {
-            println("User found")
-            return u.expirationDate > System.currentTimeMillis()
-        } else {
-            println("User not found")
-            return false
-        }
+    private fun generateJwtToken(userId: Long): String {
+        val expirationTime = Date(System.currentTimeMillis() + (1000 * 60 * 60 * 24 * 1)) // 1 day
+        return Jwts.builder()
+            .setSubject(userId.toString())
+            .setExpiration(expirationTime)
+            .signWith(SignatureAlgorithm.HS512, "OWFkZWUzNTdhOGQyZWQxM2UwMjNkZGIzOTU1NmQ2OTM0Njk4ZGE1YTU3N2E4NGJmNDNjNWIxYTQ1NDc5NzVkZg") // Replace with your secret key
+            .compact()
     }
 
     // Get user by id
