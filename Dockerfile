@@ -1,5 +1,5 @@
 # Part 1: Build the app using Maven
-FROM maven:3.9.3-amazoncorretto:20
+FROM maven:3.9.3-amazoncorretto-20
 
 ## download dependencies
 ADD pom.xml /
