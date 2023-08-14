@@ -1,6 +1,9 @@
 # Part 1: Build the app using Maven
 FROM maven:3.9.3-amazoncorretto-20
 
+ARG EHB_DB_USER
+ENV EHB_DB_USER=$EHB_DB_USER
+
 ## download dependencies
 ADD pom.xml /
 #RUN mvn clean install
