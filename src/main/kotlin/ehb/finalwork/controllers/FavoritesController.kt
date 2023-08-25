@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/favorites")
+@CrossOrigin
 class FavoritesController(
     private val favoritesService: FavoritesService
 ) {
