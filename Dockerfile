@@ -4,6 +4,9 @@ FROM maven:3.9.3-amazoncorretto-20
 ARG EHB_DB_USER
 ENV EHB_DB_USER=$EHB_DB_USER
 
+ARG SENDGRID_KEY
+ENV SENDGRID_KEY=$SENDGRID_KEY
+
 ## download dependencies
 ADD pom.xml /
 #RUN mvn clean install
