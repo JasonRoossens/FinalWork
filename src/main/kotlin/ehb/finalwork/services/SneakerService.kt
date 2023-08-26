@@ -18,8 +18,10 @@ class SneakerService {
             stylecode = sneaker.stylecode,
             brand = sneaker.brand,
             model = sneaker.model,
+            name = sneaker.name,
             colorway = sneaker.colorway,
             price = sneaker.price,
+            description = sneaker.description,
             releasedate = sneaker.releasedate,
             images = sneaker.images
 
@@ -54,8 +56,10 @@ class SneakerService {
             stylecode = sneaker.stylecode
             brand = sneaker.brand
             model = sneaker.model
+            name = sneaker.name
             colorway = sneaker.colorway
             price = sneaker.price
+            description = sneaker.description
             releasedate = sneaker.releasedate
             images = sneaker.images
         }

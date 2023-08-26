@@ -7,8 +7,10 @@ data class CreateSneakerRequest(
     var stylecode: String,
     var brand: String,
     var model: String,
+    var name: String,
     var colorway: String,
     var releasedate: LocalDate,
     var price: Double,
+    var description: String,
     var images: List<String>
 )

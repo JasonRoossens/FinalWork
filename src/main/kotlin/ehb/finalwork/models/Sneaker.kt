@@ -13,9 +13,11 @@ data class Sneaker(
     var stylecode: String,
     var brand: String,
     var model: String,
+    var name: String,
     var colorway: String,
     var releasedate: LocalDate,
     var price: Double,
+    var description: String,
     @ElementCollection
     var images: List<String>,
     @ManyToMany(mappedBy = "favorites")
