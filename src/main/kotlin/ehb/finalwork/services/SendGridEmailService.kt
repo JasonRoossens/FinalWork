@@ -34,11 +34,22 @@ class SendGridEmailService : EmailService {
             <head>
                 <title>$subject</title>
                 <style>
-                    /* Your custom CSS styles here */
+                    .logo-bg {
+                        background-color: #C4D663;
+                        width: 15%;
+                        padding-right: 2%;
+                    }
+                    .logo-bg img{
+                        width: 100%;
+                        height: auto;
+                        padding: 15px;
+                    }
                 </style>
             </head>
             <body>
-                <img src="https://thelimitedclub.com/cdn/shop/products/dunk-low-denim-light-orewood-brown-459929.png?v=1685909900" alt="Logo" width="150" height="100">
+                <div class="logo-bg">
+                <img src="https://sneakpeek-frontend.onrender.com/assets/logo-10436431.png" alt="Logo" width="150" height="100">
+                </div>
                 <h1>$subject</h1>
                 <p>$body</p>
             </body>

@@ -18,6 +18,7 @@ data class Sneaker(
     var releasedate: LocalDate,
     var price: Double,
     var description: String,
+    var buyat: String,
     @ElementCollection
     var images: List<String>,
     @ManyToMany(mappedBy = "favorites")

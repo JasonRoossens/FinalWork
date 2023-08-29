@@ -12,5 +12,6 @@ data class CreateSneakerRequest(
     var releasedate: LocalDate,
     var price: Double,
     var description: String,
+    var buyat: String,
     var images: List<String>
 )

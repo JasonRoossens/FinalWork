@@ -29,8 +29,9 @@ class FavoritesService(
         val userFirstname= user.firstname // Assuming you have a field for user's email in the User entity
         val sneakerBrand = sneaker.brand // Assuming you have a field for sneaker's name in the Sneaker entity
         val sneakerModel = sneaker.model // Assuming you have a field for sneaker's name in the Sneaker entity
+        val sneakerBuy = sneaker.buyat
         val subject = "Sneaker added to favorites!"
-        val message = "Thanks for using sneakpeek $userFirstname, you have added the sneaker: $sneakerBrand $sneakerModel to your favorites. You will be notified when the sneaker is dropping!"
+        val message = "Thanks for using sneakpeek $userFirstname, you have added the sneaker: $sneakerBrand $sneakerModel to your favorites. You will be notified 15min before the sneaker is drops! They will drop on: $sneakerBuy"
 
         emailService.sendEmail(userEmail, subject, message)
     }

@@ -23,6 +23,7 @@ class SneakerService {
             price = sneaker.price,
             description = sneaker.description,
             releasedate = sneaker.releasedate,
+            buyat = sneaker.buyat,
             images = sneaker.images
 
         )
@@ -61,6 +62,7 @@ class SneakerService {
             price = sneaker.price
             description = sneaker.description
             releasedate = sneaker.releasedate
+            buyat = sneaker.buyat
             images = sneaker.images
         }
         println("sneaker updated!")
