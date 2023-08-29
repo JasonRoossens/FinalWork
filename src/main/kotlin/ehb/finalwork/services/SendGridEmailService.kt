@@ -36,11 +36,11 @@ class SendGridEmailService : EmailService {
                 <style>
                     .logo-bg {
                         background-color: #C4D663;
-                        width: 15%;
-                        padding-right: 2%;
+                        width: 20%;
+                        
                     }
                     .logo-bg img{
-                        width: 100%;
+                        width: 90%;
                         height: auto;
                         padding: 15px;
                     }
