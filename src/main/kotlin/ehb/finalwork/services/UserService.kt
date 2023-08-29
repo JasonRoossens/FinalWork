@@ -83,10 +83,18 @@ class UserService {
     fun updateUserById(id: Long, user: CreateUserRequest): User {
         val existingUser = getUserById(id)
         existingUser.apply {
-            firstname = user.firstname
-            lastname = user.lastname
-            email = user.email
-            password = user.password
+            if (!user.firstname.isNullOrBlank()) {
+                firstname = user.firstname
+            }
+            if (!user.lastname.isNullOrBlank()) {
+                lastname = user.lastname
+            }
+            if (!user.email.isNullOrBlank()) {
+                email = user.email
+            }
+            if (!user.password.isNullOrBlank()) {
+                password = user.password
+            }
         }
         println("user updated!")
         return userRepository.save(existingUser)
